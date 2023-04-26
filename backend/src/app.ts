@@ -1,20 +1,18 @@
 import 'dotenv/config'
 import express, { NextFunction, Request, Response } from 'express'
-import PostModel from "./models/post"
+import postsRoutes from './routes/posts'
+import morgan from 'morgan'
 
 const app = express() // init express server
 
-app.get('/', async (req, res, next) => {
-    try {
-        const posts = await PostModel.find().exec()
-        res.status(200).json(posts)
-    }
-    catch (error) {
-        next(error)
-    }
-})
+// middleware
+app.use(morgan("dev")) // print log of endpoints being accessed
 
-// middleware for handling access to nonexistent endpoint
+app.use(express.json()) // allow sending json to server
+
+app.use('/api/posts', postsRoutes)
+
+// handle access to nonexistent endpoint
 app.use((req, res, next) => {
     // TODO res.status(404)
     next(Error("Endpoint not found."))
