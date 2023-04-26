@@ -1,7 +1,12 @@
 import { InferSchemaType, model, Schema } from "mongoose"
 
 const postSchema = new Schema({
-    // TODO: photo
+    // TODO
+    fileName: { type: String, required: false },
+    file: {
+        data: Buffer,
+        contentType: String
+    },
     caption: { type: String, required: false },
 }, { timestamps: true })
 
