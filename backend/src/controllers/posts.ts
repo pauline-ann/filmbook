@@ -101,3 +101,25 @@ export const updatePost: RequestHandler<UpdatePostParams, unknown, UpdatePostBod
         next(error)
     }
 }
+
+export const deletePost: RequestHandler = async (req, res, next) => {
+    const postId = req.params.postId
+
+    try {
+        if (!mongoose.isValidObjectId(postId)) {
+            throw createHttpError(400, "Invalid post id.")
+        }
+
+        const post = await PostModel.findById(postId).exec()
+
+        if (!post) {
+            throw createHttpError(404, "Post not found.")
+        }
+
+        await post.deleteOne()
+
+        res.sendStatus(204)
+    } catch (error) {
+        next(error)
+    }
+}
