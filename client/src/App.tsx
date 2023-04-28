@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import { Post } from './models/post'
+import { Post as PostModel } from './models/post'
 import axios from 'axios'
+import Post from './components/Post'
 
 function App() {
-  const [posts, setPosts] = useState<Post[]>()
+  const [posts, setPosts] = useState<PostModel[]>()
 
   useEffect(() => {
     async function loadPosts() {
@@ -22,9 +23,11 @@ function App() {
   }, [])
 
   return (
-    <h1 className="text-4xl font-bold underline">
-      {JSON.stringify(posts)}
-    </h1>
+    <div className='App'>
+      {posts?.map((post) => (
+        <Post post={post} key={post._id} />
+      ))}
+    </div>
   )
 }
 
