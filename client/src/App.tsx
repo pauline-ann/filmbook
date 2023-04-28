@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import './App.css'
 import { Post as PostModel } from './models/post'
 import axios from 'axios'
-import Post from './components/Post'
+import Feed from './components/Feed'
 
 function App() {
   const [posts, setPosts] = useState<PostModel[]>()
@@ -23,11 +22,9 @@ function App() {
   }, [])
 
   return (
-    <div className='App'>
-      {posts?.map((post) => (
-        <Post post={post} key={post._id} />
-      ))}
-    </div>
+    <>
+      <Feed posts={posts} />
+    </>
   )
 }
 
