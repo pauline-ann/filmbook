@@ -16,16 +16,14 @@ const Post = ({ post }: PostProps) => {
     const dateText = updatedAt > createdAt ? formatDate(updatedAt) : formatDate(createdAt)
 
     return (
-        <>
-            <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-100 dark:border-gray-200">
-                <img className="rounded-t-lg" src={filmPhoto} alt="" />
-                <div className="p-5">
-                    <p className="font-normal text-gray-900 mb-3 dark:text-gray-400">{caption}</p>
-                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">@user</p>
-                    <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">{dateText}</p>
-                </div>
+        <div className="bg-white shadow-md border border-gray-200 max-w-sm dark:bg-gray-100 dark:border-gray-200">
+            <img className="lg" src={filmPhoto} alt="" />
+            <div className="p-5">
+                <p className="font-normal text-gray-900 mb-3 dark:text-gray-400">{caption}</p>
+                <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">@user</p>
+                <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">{dateText}</p>
             </div>
-        </>
+        </div>
     )
 }
 
