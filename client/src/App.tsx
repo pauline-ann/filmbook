@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Post as PostModel } from './models/post'
 import Feed from './components/Feed'
-import fetchData from './utils/fetchData'
+import { fetchPosts } from './utils/fetchPosts'
 import Button from './components/Button'
 import PlusIcon from './components/icons/PlusIcon'
 import Modal from './components/Modal'
@@ -14,8 +14,8 @@ function App() {
   useEffect(() => {
     async function loadPosts() {
       try {
-        const data = await fetchData('/api/posts')
-        setPosts(data)
+        const posts = await fetchPosts()
+        setPosts(posts)
       }
       catch (error) {
         console.error(error)
@@ -26,9 +26,10 @@ function App() {
   }, [])
 
   return (
-    <div className='w-screen h-screen flex justify-center items-center'>
+    <div className='w-screen h-screen flex flex-col items-center mt-10'>
+      <h1 className='text-5xl m-20'>filmbook</h1>
       <Feed posts={posts} />
-      <Button isRound onClick={() => setShowModal(true)}>
+      <Button className='fixed bottom-0 right-0 m-8' isRound width='60px' onClick={() => setShowModal(true)}>
         <PlusIcon />
       </Button>
       <Modal show={showModal}>

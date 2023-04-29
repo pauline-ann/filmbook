@@ -7,14 +7,15 @@ interface ButtonProps {
     width?: string
     height?: string
     color?: string
+    className?: string
 }
 
-const Button = ({ onClick, children, isRound, width = '50px', height = '50px', color = 'bg-gray-300' }: ButtonProps) => {
+const Button = ({ onClick, children, isRound, width = '50px', height = '50px', color = 'bg-gray-300', className }: ButtonProps) => {
 
     const buttonHeight = isRound ? width : height
 
     return (
-        <button onClick={onClick} className={`${isRound && 'rounded-full'} ${color} flex justify-center items-center`} style={{ width, height: buttonHeight }}>
+        <button onClick={onClick} className={`${isRound && 'rounded-full'} ${color} ${className} flex justify-center items-center`} style={{ width, height: buttonHeight }}>
             {children}
         </button>
     )

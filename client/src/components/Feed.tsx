@@ -8,12 +8,12 @@ interface FeedProps {
 const Feed = ({ posts }: FeedProps) => {
 
     return (
-        <>
+        <div className='w-1/2'>
             {posts?.map((post) => (
                 <Post post={post} key={post._id} />
             ))
             }
-        </>
+        </div>
     )
 }
 
