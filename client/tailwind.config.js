@@ -7,6 +7,12 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    // eslint-disable-next-line no-undef
+    require('@tailwindcss/aspect-ratio')
+  ],
 }
 
