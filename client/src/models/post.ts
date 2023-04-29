@@ -9,3 +9,7 @@ export interface Post {
     createdAt: string,
     updatedAt: string,
 }
+
+export interface PostRequest {
+    caption: string
+}
