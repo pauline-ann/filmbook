@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios"
+import { Post } from "../models/post"
 
-export default async function fetchData(url: string, init?: AxiosRequestConfig) {
+async function fetchData(url: string, init?: AxiosRequestConfig) {
 
     try {
         const response = await axios(url, init)
@@ -13,4 +14,9 @@ export default async function fetchData(url: string, init?: AxiosRequestConfig) 
             throw Error(errorMessage)
         }
     }
+}
+
+export async function fetchPosts(): Promise<Post[]> {
+    const response = await fetchData('/api/posts')
+    return response
 }
