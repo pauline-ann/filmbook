@@ -11,8 +11,8 @@ async function fetchData(url: string, init?: AxiosRequestConfig) {
         let errorMessage = 'Failed to fetch data.'
         if (error instanceof Error) {
             errorMessage = error.message
-            throw Error(errorMessage)
         }
+        throw Error(errorMessage)
     }
 }
 
