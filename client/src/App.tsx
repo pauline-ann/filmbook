@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Post as PostModel } from './models/post'
 import Feed from './components/Feed'
-import { fetchPosts } from './utils/fetchPosts'
+import { fetchPosts } from './network/fetchPosts'
 import Button from './components/Button'
 import PlusIcon from './components/icons/PlusIcon'
 import Modal from './components/modals/Modal'
