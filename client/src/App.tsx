@@ -4,8 +4,8 @@ import Feed from './components/Feed'
 import { fetchPosts } from './utils/fetchPosts'
 import Button from './components/Button'
 import PlusIcon from './components/icons/PlusIcon'
-import Modal from './components/Modal'
-import CreatePost from './components/CreatePost'
+import Modal from './components/modals/Modal'
+import CreatePostModal from './components/modals/CreatePostModal'
 
 function App() {
   const [posts, setPosts] = useState<PostModel[]>()
@@ -33,7 +33,7 @@ function App() {
         <PlusIcon />
       </Button>
       <Modal show={showModal}>
-        <CreatePost toggleModal={() => setShowModal(!showModal)} />
+        <CreatePostModal toggleModal={() => setShowModal(!showModal)} />
       </Modal>
     </div>
   )

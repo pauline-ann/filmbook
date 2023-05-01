@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import filmPhoto from '../assets/film1.jpg'
-import LoadingIcon from './icons/LoadingIcon'
-import { createPost } from '../utils/createPost'
+import filmPhoto from '../../assets/film1.jpg'
+import LoadingIcon from '../icons/LoadingIcon'
+import { createPost } from '../../utils/createPost'
 
 interface CreatePostProps {
     toggleModal: (arg: boolean) => void
