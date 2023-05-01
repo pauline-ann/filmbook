@@ -4,11 +4,11 @@ import LoadingIcon from '../icons/LoadingIcon'
 import { createPost } from '../../network/createPost'
 import CloseIcon from '../icons/CloseIcon'
 
-interface CreatePostProps {
-    toggleModal: (arg: boolean) => void
+interface CreatePostModalProps {
+    onClose: () => void
 }
 
-const CreatePost = ({ toggleModal }: CreatePostProps) => {
+const CreatePostModal = ({ onClose }: CreatePostModalProps) => {
     const [isLoading, setIsLoading] = useState(false)
     const [caption, setCaption] = useState('')
 
@@ -26,7 +26,7 @@ const CreatePost = ({ toggleModal }: CreatePostProps) => {
         }
 
         // close modal
-        toggleModal(false)
+        onClose()
         setIsLoading(false)
     }
 
@@ -45,7 +45,7 @@ const CreatePost = ({ toggleModal }: CreatePostProps) => {
                             </h3>
                             <button
                                 className="absolute top-3 right-2.5 text-gray-700 bg-transparent hover:bg-gray-300 hover:text-white rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                onClick={() => toggleModal(false)}
+                                onClick={onClose}
                             >
                                 <CloseIcon />
                             </button>
@@ -78,4 +78,4 @@ const CreatePost = ({ toggleModal }: CreatePostProps) => {
     )
 }
 
-export default CreatePost
+export default CreatePostModal

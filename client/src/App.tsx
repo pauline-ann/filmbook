@@ -32,9 +32,11 @@ function App() {
       <Button className='fixed bottom-0 right-0 m-8' isRound width='60px' onClick={() => setShowModal(true)}>
         <PlusIcon />
       </Button>
-      <Modal show={showModal}>
-        <CreatePostModal toggleModal={() => setShowModal(!showModal)} />
-      </Modal>
+      {showModal &&
+        <Modal>
+          <CreatePostModal onClose={() => setShowModal(false)} />
+        </Modal>
+      }
     </div>
   )
 }
