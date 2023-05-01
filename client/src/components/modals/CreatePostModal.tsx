@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import filmPhoto from '../../assets/film1.jpg'
 import LoadingIcon from '../icons/LoadingIcon'
 import { PostInput, createPost } from '../../network/createPost'
