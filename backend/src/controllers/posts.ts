@@ -5,7 +5,7 @@ import mongoose from "mongoose"
 
 export const getPosts: RequestHandler = async (req, res, next) => {
     try {
-        const posts = await PostModel.find().exec()
+        const posts = await PostModel.find().sort({ updatedAt: -1 }).exec()
         res.status(200).json(posts)
     }
     catch (error) {
