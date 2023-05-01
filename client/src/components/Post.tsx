@@ -16,7 +16,7 @@ const Post = ({ post }: PostProps) => {
     const dateText = updatedAt > createdAt ? formatDate(updatedAt) : formatDate(createdAt)
 
     return (
-        <div className="p-5 bg-white rounded-md shadow-md border border-gray-200 dark:bg-gray-100 dark:border-gray-200">
+        <div className="p-7 bg-white rounded-md shadow-md border border-gray-200 dark:bg-gray-100 dark:border-gray-200">
             <img className="lg" src={filmPhoto} alt="" />
             <div className="p-5">
                 <p className="font-normal text-gray-900 mb-3 dark:text-gray-400">{caption}</p>

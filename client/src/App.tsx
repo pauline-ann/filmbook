@@ -26,7 +26,7 @@ function App() {
   }, [])
 
   return (
-    <div className='w-screen h-screen flex flex-col items-center mt-10'>
+    <div className='w-screen h-screen flex flex-col items-center mt-10 p-10'>
       <h1 className='text-5xl m-20'>filmbook</h1>
       <Feed posts={posts} />
       <Button className='fixed bottom-0 right-0 m-8' isRound width='60px' onClick={() => setShowModal(true)}>
