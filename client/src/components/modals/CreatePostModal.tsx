@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import filmPhoto from '../../assets/film1.jpg'
 import LoadingIcon from '../icons/LoadingIcon'
-import { PostInput, createPost } from '../../network/createPost'
-import CloseIcon from '../icons/CloseIcon'
+import { PostInput, createPost } from '../../network/posts_api'
 import { Post } from '../../models/post'
 import { useForm } from 'react-hook-form'
+import CloseButton from '../buttons/CloseButton'
 
 interface CreatePostModalProps {
     onClose: () => void,
@@ -42,12 +41,7 @@ const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
                             <h3 className="text-2xl font-semibold">
                                 Create new post
                             </h3>
-                            <button
-                                className="absolute top-3 right-2.5 text-gray-700 bg-transparent hover:bg-gray-300 hover:text-white rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                onClick={onClose}
-                            >
-                                <CloseIcon />
-                            </button>
+                            <CloseButton onClose={onClose} />
                         </div>
                         {/*body*/}
                         <div className="relative p-6 flex-auto">
