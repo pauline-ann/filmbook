@@ -56,7 +56,7 @@ const CreatePost = ({ toggleModal }: CreatePostProps) => {
                                 <div className='aspect-w-1 aspect-h-1 bg-gray-100'>
                                     <img className='object-contain' src={filmPhoto} />
                                 </div>
-                                <textarea className="bg-gray-50 border border-gray-300 text-gray-900 block w-full p-3 focus:outline-none" value={caption} required onChange={e => setCaption(e.target.value)} />
+                                <textarea className="bg-gray-50 border border-gray-300 text-gray-900 block w-full p-3 focus:outline-none" value={caption} required onChange={e => setCaption(e.target.value)} placeholder='Type caption here...' />
                             </form>
                         </div>
                         {/*footer*/}
