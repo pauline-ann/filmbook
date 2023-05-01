@@ -1,6 +1,7 @@
 import axios from "axios"
+import { Post } from "../models/post"
 
-interface PostInput {
+export interface PostInput {
     caption?: string
 }
 
@@ -19,7 +20,7 @@ async function createData(url: string, init?: PostInput) {
     }
 }
 
-export async function createPost(post: PostInput): Promise<PostInput> {
+export async function createPost(post: PostInput): Promise<Post> {
     const response = await createData('/api/posts', post)
     return response
 }

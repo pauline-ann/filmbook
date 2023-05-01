@@ -1,33 +1,31 @@
-import { useState } from 'react'
 import filmPhoto from '../../assets/film1.jpg'
 import LoadingIcon from '../icons/LoadingIcon'
-import { createPost } from '../../network/createPost'
+import { PostInput, createPost } from '../../network/createPost'
 import CloseIcon from '../icons/CloseIcon'
+import { Post } from '../../models/post'
+import { useForm } from 'react-hook-form'
 
 interface CreatePostModalProps {
-    onClose: () => void
+    onClose: () => void,
+    onPostSaved: (post: Post) => void
 }
 
-const CreatePostModal = ({ onClose }: CreatePostModalProps) => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [caption, setCaption] = useState('')
+const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<PostInput>()
 
-    const handlePost = async () => {
-        setIsLoading(true)
-
+    const onSubmit = async (input: PostInput) => {
         // create post
         try {
-            await createPost({
-                caption: caption
-            })
+            const postResponse = await createPost(input)
+            onPostSaved(postResponse)
         }
         catch (error) {
-            console.log(error)
+            console.error(error)
+            alert(error)
         }
 
         // close modal
         onClose()
-        setIsLoading(false)
     }
 
     return (
@@ -52,22 +50,22 @@ const CreatePostModal = ({ onClose }: CreatePostModalProps) => {
                         </div>
                         {/*body*/}
                         <div className="relative p-6 flex-auto">
-                            <form className='space-y-7'>
+                            <form className='space-y-7' id="createPostForm" onSubmit={handleSubmit(onSubmit)}>
                                 <div className='aspect-w-1 aspect-h-1 bg-gray-100'>
                                     <img className='object-contain' src={filmPhoto} />
                                 </div>
-                                <textarea className="bg-gray-50 border border-gray-300 text-gray-900 block w-full p-3 focus:outline-none" value={caption} required onChange={e => setCaption(e.target.value)} placeholder='Type caption here...' />
+                                <textarea className="bg-gray-50 border border-gray-300 text-gray-900 block w-full p-3 focus:outline-none" rows={2} placeholder='Type caption here...' {...register("caption")} />
                             </form>
                         </div>
                         {/*footer*/}
                         <div className="flex items-center justify-center p-6 rounded-b">
                             <button
                                 className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => handlePost()}
-                                disabled={isLoading}
+                                type="submit"
+                                form="createPostForm"
+                                disabled={isSubmitting}
                             >
-                                {isLoading ? <LoadingIcon /> : 'Post'}
+                                {isSubmitting ? <LoadingIcon /> : 'Post'}
                             </button>
                         </div>
                     </div>
