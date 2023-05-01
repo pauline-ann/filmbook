@@ -34,7 +34,7 @@ function App() {
       </Button>
       {showModal &&
         <Modal>
-          <CreatePostModal onClose={() => setShowModal(false)} />
+          <CreatePostModal onClose={() => setShowModal(false)} onPostSaved={(newPost) => setPosts([newPost, ...posts as any[]])} />
         </Modal>
       }
     </div>
