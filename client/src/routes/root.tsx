@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Post as PostModel } from './models/post'
-import Feed from './components/Feed'
-import { fetchPosts } from './network/posts_api'
-import Button from './components/buttons/Button'
-import PlusIcon from './components/icons/PlusIcon'
-import Modal from './components/modals/Modal'
-import CreatePostModal from './components/modals/CreatePostModal'
+import { Post as PostModel } from '../models/post'
+import Feed from '../components/Feed'
+import { fetchPosts } from '../network/posts_api'
+import Button from '../components/buttons/Button'
+import PlusIcon from '../components/icons/PlusIcon'
+import Modal from '../components/modals/Modal'
+import CreatePostModal from '../components/modals/CreatePostModal'
 
 function App() {
   const [posts, setPosts] = useState<PostModel[]>()
