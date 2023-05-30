@@ -8,6 +8,12 @@ export async function fetchPosts(): Promise<Post[]> {
     return response.data
 }
 
+// Fetch one post
+export async function fetchPost(postId: string): Promise<Post> {
+    const response = await axios('/api/posts/' + postId)
+    return response.data
+}
+
 // Create posts
 
 export interface PostInput {
