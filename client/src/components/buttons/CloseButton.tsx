@@ -1,10 +1,10 @@
 import CloseIcon from '../icons/CloseIcon'
 
-interface TinyButtonProps {
+interface CloseButtonProps {
     onClose: () => void
 }
 
-const TinyButton = ({ onClose }: TinyButtonProps) => {
+const CloseButton = ({ onClose }: CloseButtonProps) => {
 
     return (
         <button
@@ -16,4 +16,4 @@ const TinyButton = ({ onClose }: TinyButtonProps) => {
     )
 }
 
-export default TinyButton
+export default CloseButton
