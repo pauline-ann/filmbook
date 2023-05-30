@@ -11,7 +11,8 @@ interface CreatePostModalProps {
 }
 
 const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<PostInput>()
+    // TODO formState: {errors}
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm<PostInput>()
 
     const onSubmit = async (input: PostInput) => {
         // create post
