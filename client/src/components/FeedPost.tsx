@@ -6,7 +6,7 @@ interface PostProps {
     post: PostModel
 }
 
-const Post = ({ post }: PostProps) => {
+const FeedPost = ({ post }: PostProps) => {
     const {
         caption,
         updatedAt,
@@ -31,4 +31,4 @@ const Post = ({ post }: PostProps) => {
     )
 }
 
-export default Post
+export default FeedPost
