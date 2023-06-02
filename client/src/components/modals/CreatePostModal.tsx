@@ -64,8 +64,10 @@ const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
                                         />
                                     )}
                                     {!previewImage && (
-                                        <div className='align-middle text-slate-800 text-lg m-auto w-full'>
-                                            <PlusIcon inline /> Upload Photo
+                                        <div className='text-slate-800 text-lg m-auto w-full'>
+                                            <div className='m-0 absolute top-2/4 left-2/4 -translate-x-2/4'>
+                                                <PlusIcon inline /> Upload Photo
+                                            </div>
                                         </div>
                                     )}
                                     <input
