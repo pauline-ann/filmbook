@@ -1,9 +1,10 @@
-import filmPhoto from '../../assets/film1.jpg'
 import LoadingIcon from '../icons/LoadingIcon'
 import { PostInput, createPost } from '../../network/posts_api'
 import { Post } from '../../models/post'
 import { useForm } from 'react-hook-form'
 import CloseButton from '../buttons/CloseButton'
+import PlusIcon from '../icons/PlusIcon'
+import useFileUpload from '../../utils/useFileUpload'
 
 interface CreatePostModalProps {
     onClose: () => void,
@@ -13,8 +14,13 @@ interface CreatePostModalProps {
 const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
     // TODO formState: {errors}
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<PostInput>()
+    const {
+        previewImage,
+        actions: { handlePreviewImage, setPreviewImage }
+    } = useFileUpload()
 
     const onSubmit = async (input: PostInput) => {
+
         // create post
         try {
             const postResponse = await createPost(input)
@@ -26,6 +32,7 @@ const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
         }
 
         // close modal
+        handlePreviewImage(undefined)
         onClose()
     }
 
@@ -47,8 +54,28 @@ const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
                         {/*body*/}
                         <div className="relative p-6 flex-auto">
                             <form className='space-y-7' id="createPostForm" onSubmit={handleSubmit(onSubmit)}>
-                                <div className='aspect-w-1 aspect-h-1 bg-gray-100'>
-                                    <img className='object-contain' src={filmPhoto} />
+                                <div className='aspect-w-1 aspect-h-1 bg-gray-100 cursor-pointer mb-8'>
+
+                                    {previewImage && (
+                                        <img
+                                            alt=""
+                                            className='object-contain'
+                                            src={previewImage?.url}
+                                        />
+                                    )}
+                                    {!previewImage && (
+                                        <div className='align-middle text-slate-800 text-lg m-auto w-full'>
+                                            <PlusIcon inline /> Upload Photo
+                                        </div>
+                                    )}
+                                    <input
+                                        type="file"
+                                        name='file'
+                                        multiple={false}
+                                        className='opacity-0 h-full w-full'
+                                        onChange={(e) => handlePreviewImage(e.target.files || undefined)}
+                                        accept='.png, .jpg., .jpeg, .heic'
+                                    />
                                 </div>
                                 <textarea className="bg-gray-50 border border-gray-300 text-gray-900 block w-full p-3 focus:outline-none" rows={2} placeholder='Type caption here...' {...register("caption")} />
                             </form>
