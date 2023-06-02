@@ -54,8 +54,7 @@ const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
                         {/*body*/}
                         <div className="relative p-6 flex-auto">
                             <form className='space-y-7' id="createPostForm" onSubmit={handleSubmit(onSubmit)}>
-                                <div className='aspect-w-1 aspect-h-1 bg-gray-100 cursor-pointer mb-8'>
-
+                                <div className='aspect-w-1 aspect-h-1 bg-gray-100 mb-8'>
                                     {previewImage && (
                                         <img
                                             alt=""
@@ -74,7 +73,7 @@ const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
                                         type="file"
                                         name='file'
                                         multiple={false}
-                                        className='opacity-0 h-full w-full'
+                                        className='opacity-0 h-full w-full cursor-pointer'
                                         onChange={(e) => handlePreviewImage(e.target.files || undefined)}
                                         accept='.png, .jpg., .jpeg, .heic'
                                     />
