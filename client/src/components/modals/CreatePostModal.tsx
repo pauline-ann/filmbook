@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import CloseButton from '../buttons/CloseButton'
 import PlusIcon from '../icons/PlusIcon'
 import useFileUpload from '../../utils/useFileUpload'
+import { fetchSignedUrl, uploadToS3 } from '../../network/s3_api'
 
 interface CreatePostModalProps {
     onClose: () => void,
@@ -16,14 +17,35 @@ const CreatePostModal = ({ onClose, onPostSaved }: CreatePostModalProps) => {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<PostInput>()
     const {
         previewImage,
-        actions: { handlePreviewImage, setPreviewImage }
+        actions: { handlePreviewImage }
     } = useFileUpload()
 
     const onSubmit = async (input: PostInput) => {
 
+        const { caption } = input
+
+        // TODO form error handling
+        if (!previewImage) {
+            return
+        }
+
         // create post
         try {
-            const postResponse = await createPost(input)
+            // get secure url from server
+            const { url } = await fetchSignedUrl()
+
+            // upload image to s3 bucket
+            await uploadToS3(url, previewImage.file)
+
+            // get url for uploaded image
+            const imageUrl = url.split('?')[0]
+
+            // post request to server to store data in db
+            const postResponse = await createPost({
+                caption,
+                imageUrl
+            })
+
             onPostSaved(postResponse)
         }
         catch (error) {
