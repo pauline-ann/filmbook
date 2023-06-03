@@ -17,7 +17,8 @@ export async function fetchPost(postId: string): Promise<Post> {
 // Create posts
 
 export interface PostInput {
-    caption?: string
+    caption?: string,
+    imageUrl?: string
 }
 
 export async function createPost(post: PostInput): Promise<Post> {
