@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import express, { NextFunction, Request, Response } from 'express'
 import postsRoutes from './routes/posts'
+import s3Routes from './routes/s3'
 import morgan from 'morgan'
 import createHttpError, { isHttpError } from 'http-errors'
 
@@ -12,6 +13,8 @@ app.use(morgan("dev")) // print log of endpoints being accessed
 app.use(express.json()) // allow sending json to server
 
 app.use('/api/posts', postsRoutes)
+
+app.use('/api/s3', s3Routes)
 
 // handle access to nonexistent endpoint
 app.use((req, res, next) => {
